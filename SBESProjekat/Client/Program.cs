@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,6 +11,24 @@ namespace Client
     {
         static void Main(string[] args)
         {
+
+            NetTcpBinding binding = new NetTcpBinding();
+            string address = "net.tcp://localhost:9999/ServiceContract";
+            EndpointAddress endpointAddress = new EndpointAddress(new Uri(address));
+
+
+
+
+
+            using (ClientProxy proxy = new ClientProxy(binding, endpointAddress))
+            {
+
+                proxy.ispisi("Cao nado");
+            }
+
+            Console.ReadLine();
+
+
         }
     }
 }
