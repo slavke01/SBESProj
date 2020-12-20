@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Autor.cs" />
+    <Compile Include="DataBase.cs" />
     <Compile Include="IServiceContract.cs" />
     <Compile Include="Knjiga.cs" />
     <Compile Include="Korisnik.cs" />

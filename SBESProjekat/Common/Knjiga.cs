@@ -8,15 +8,15 @@ namespace Common
 {
     public class Knjiga
     {
-
+        public string Id { get; set; }
         public string Naziv { get; set; }
         public string Zanr { get; set; }
         public Autor Pisac { get; set; }
 
         public Knjiga() { }
 
-        public Knjiga(string naziv, string zanr, Autor autor) {
-
+        public Knjiga(string id,string naziv, string zanr, Autor autor) {
+            this.Id = id;
             this.Naziv= naziv;
             this.Zanr = zanr;
             this.Pisac = autor;

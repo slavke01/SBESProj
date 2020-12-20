@@ -27,9 +27,36 @@ namespace Client
             factory = this.CreateChannel();
         }
 
-        public void ispisi(string poruka)
+        public void AddAutor(Autor autor)
         {
-            factory.ispisi(poruka);
+            factory.AddAutor(autor);
         }
+
+        public void AddKnjiga(Knjiga knjiga)
+        {
+            factory.AddKnjiga(knjiga);
+        }
+
+        public void AddUser(Korisnik korisnik)
+        {
+            factory.AddUser(korisnik);
+        }
+
+        public void DeleteAutor(string id)
+        {
+            factory.DeleteAutor(id);
+        }
+
+        public void DeleteKnjiga(string id)
+        {
+            factory.DeleteKnjiga(id);
+        }
+
+        public void DeleteUser(string username)
+        {
+            factory.DeleteUser(username);
+        }
+
+       
     }
 }

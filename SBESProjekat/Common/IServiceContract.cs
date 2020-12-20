@@ -10,9 +10,23 @@ namespace Common
     [ServiceContract]
     public interface IServiceContract
     {
-
+        [OperationContract]
+        void AddUser(Korisnik korisnik);
 
         [OperationContract]
-        void ispisi(string poruka);
+        void AddAutor(Autor autor);
+
+        [OperationContract]
+        void AddKnjiga(Knjiga knjiga);
+
+        [OperationContract]
+        void DeleteUser(string username);
+
+        [OperationContract]
+        void DeleteAutor(string id);
+
+        [OperationContract]
+        void DeleteKnjiga(string id);
+
     }
 }

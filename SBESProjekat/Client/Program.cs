@@ -23,7 +23,7 @@ namespace Client
             using (ClientProxy proxy = new ClientProxy(binding, endpointAddress))
             {
 
-                proxy.ispisi("Cao nado");
+                
             }
 
             Console.ReadLine();
