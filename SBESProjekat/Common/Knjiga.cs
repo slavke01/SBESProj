@@ -15,11 +15,12 @@ namespace Common
 
         public Knjiga() { }
 
-        public Knjiga(string id,string naziv, string zanr, Autor autor) {
+        public Knjiga(string id,string naziv, string zanr, string id_autora) {
             this.Id = id;
             this.Naziv= naziv;
             this.Zanr = zanr;
-            this.Pisac = autor;
+
+            this.Pisac = DataBase.autori[id_autora];
     }
     
     }

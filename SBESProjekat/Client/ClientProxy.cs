@@ -12,34 +12,34 @@ namespace Client
     {
         IServiceContract factory;
 
-
+        
         //Jedan proxi
         public ClientProxy(NetTcpBinding binding, EndpointAddress address) : base(binding,address) {
 
             factory = this.CreateChannel();
-            //Gadjati windows auth
+            //windows auth
         }
 
         //Drugi proxi
         public ClientProxy(NetTcpBinding binding, EndpointAddress address,string x) : base (binding,address) 
         {
-            //Gadjati cert auth
+            //cert auth
             factory = this.CreateChannel();
         }
 
-        public void AddAutor(Autor autor)
+        public void AddAutor(string id,string ime, string prezime)
         {
-            factory.AddAutor(autor);
+            factory.AddAutor(id,ime,prezime);
         }
 
-        public void AddKnjiga(Knjiga knjiga)
+        public void AddKnjiga(string id, string naziv,string zanr,string id_autora)
         {
-            factory.AddKnjiga(knjiga);
+            factory.AddKnjiga(id,naziv,zanr,id_autora);
         }
 
-        public void AddUser(Korisnik korisnik)
+        public void AddUser(string username,string ime, string prezime, bool active)
         {
-            factory.AddUser(korisnik);
+            factory.AddUser(username,ime,prezime,active);
         }
 
         public void DeleteAutor(string id)
@@ -57,6 +57,34 @@ namespace Client
             factory.DeleteUser(username);
         }
 
-       
+        public void IzmjeniAutor(string id, string ime, string prezime)
+        {
+            factory.IzmjeniAutor(id, ime, prezime);
+        }
+
+        public void IzmjeniKnjiga(string id, string naziv, string zanr)
+        {
+            factory.IzmjeniKnjiga(id,naziv,zanr);
+        }
+
+        public void IzmjeniUser(string username, string ime, string prezime, bool active)
+        {
+            factory.IzmjeniUser(username,ime,prezime,active);
+        }
+
+        public string ShowAutors()
+        {
+            return factory.ShowAutors();
+        }
+
+        public string ShowBooks()
+        {
+            return factory.ShowBooks();
+        }
+
+        public string ShowUsers()
+        {
+         return   factory.ShowUsers();
+        }
     }
 }

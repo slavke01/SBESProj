@@ -9,6 +9,11 @@ namespace Client
 {
     class Program
     {
+
+        
+
+   
+
         static void Main(string[] args)
         {
 
@@ -18,12 +23,12 @@ namespace Client
 
 
 
-
+            
 
             using (ClientProxy proxy = new ClientProxy(binding, endpointAddress))
             {
 
-                
+                Meni.ShowMeni(proxy);
             }
 
             Console.ReadLine();

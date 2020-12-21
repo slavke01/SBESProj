@@ -11,13 +11,13 @@ namespace Common
     public interface IServiceContract
     {
         [OperationContract]
-        void AddUser(Korisnik korisnik);
+        void AddUser(string username,string ime,string prezime, bool active);
 
         [OperationContract]
-        void AddAutor(Autor autor);
+        void AddAutor(string id,string ime,string prezme);
 
         [OperationContract]
-        void AddKnjiga(Knjiga knjiga);
+        void AddKnjiga(string id,string naziv,string zanr,string id_autora);
 
         [OperationContract]
         void DeleteUser(string username);
@@ -27,6 +27,24 @@ namespace Common
 
         [OperationContract]
         void DeleteKnjiga(string id);
+
+        [OperationContract]
+        string ShowUsers();
+
+        [OperationContract]
+        string ShowAutors();
+
+        [OperationContract]
+        string ShowBooks();
+
+        [OperationContract]
+        void IzmjeniUser(string username,string ime, string prezime, bool active);
+
+        [OperationContract]
+        void IzmjeniAutor(string id, string ime, string prezime);
+
+        [OperationContract]
+        void IzmjeniKnjiga(string id, string naziv, string zanr);
 
     }
 }
