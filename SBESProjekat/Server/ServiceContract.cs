@@ -11,6 +11,7 @@ namespace Server
 {
     public class ServiceContract : IServiceContract
     {
+        [PrincipalPermission(SecurityAction.Demand, Role = "Read")]
 
         public void AddAutor(string id,string ime,string prezime)
         {
@@ -28,6 +29,7 @@ namespace Server
                 }
             }
         }
+        [PrincipalPermission(SecurityAction.Demand, Role = "Read")]
 
         public void AddKnjiga(string id,string naziv,string zanr,string id_autora)
         {
@@ -68,6 +70,7 @@ namespace Server
             
            
         }
+        [PrincipalPermission(SecurityAction.Demand, Role = "Delete")]
 
         public void DeleteAutor(string id)
         {
@@ -80,7 +83,7 @@ namespace Server
                 Console.WriteLine("Autor ne postoji.");
             }
         }
-
+        [PrincipalPermission(SecurityAction.Demand, Role = "Delete")]
         public void DeleteKnjiga(string id)
         {
             if (DataBase.knjige.ContainsKey(id))
@@ -92,7 +95,7 @@ namespace Server
                 Console.WriteLine("Knjiga ne postoji.");
             }
         }
-
+        [PrincipalPermission(SecurityAction.Demand, Role = "Delete")]
         public void DeleteUser(string username)
         {
             if (DataBase.users.ContainsKey(username))
@@ -104,7 +107,7 @@ namespace Server
                 Console.WriteLine("Korisnik ne postoji.");
             }
         }
-
+        [PrincipalPermission(SecurityAction.Demand, Role = "Modify")]
         public void IzmjeniAutor(string id, string ime, string prezime)
         {
 
@@ -120,7 +123,7 @@ namespace Server
                 Console.WriteLine("Autor sa ovim ID-em ne postoji");
             }
         }
-
+        [PrincipalPermission(SecurityAction.Demand, Role = "Modify")]
         public void IzmjeniKnjiga(string id, string naziv, string zanr)
         {
             if (DataBase.knjige.ContainsKey(id))
@@ -135,7 +138,7 @@ namespace Server
                 Console.WriteLine("Knjiga sa ovim ID-em ne postoji");
             }
         }
-
+        [PrincipalPermission(SecurityAction.Demand, Role = "Modify")]
         public void IzmjeniUser(string username, string ime, string prezime, bool active)
         {
             if (DataBase.users.ContainsKey(username))
