@@ -3,16 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Runtime.Serialization;
 namespace Common
 {
+    [DataContract]
     public class Korisnik
     {
 
+        [DataMember]
         public string Username { get; set; }
+        [DataMember]
         public string Ime { get; set; }
+        [DataMember]
         public string Prezime { get; set; }
+        [DataMember]
         public List<Knjiga> Iznajmljene { get; set; }
+        [DataMember]
         public bool Aktivan { get; set; }
 
 

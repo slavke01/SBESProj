@@ -52,7 +52,13 @@ namespace Client
                                     bool active;
                                     if (aktivan == "T") active = true;
                                     else active = false;
-                                    proxy.AddUser(username,ime,prezime,active);
+                                    try
+                                    {
+                                        proxy.AddUser(username, ime, prezime, active);
+                                    }
+                                    catch (Exception e) {
+                                        Console.WriteLine("Eror uhvacen");
+                                    }
                                     break;
                                 case 2:
                                     Console.WriteLine("Izmjena korisnika.");

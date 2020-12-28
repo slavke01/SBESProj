@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
 using Common;
@@ -10,6 +11,7 @@ namespace Server
 {
     public class ServiceContract : IServiceContract
     {
+
         public void AddAutor(string id,string ime,string prezime)
         {
             Autor autor = new Autor(id,ime,prezime);
@@ -45,21 +47,26 @@ namespace Server
             }
         }
 
+        [PrincipalPermission(SecurityAction.Demand, Role = "Read")]
+
         public void AddUser(string username,string ime,string prezime ,bool active)
         {
-            Korisnik korisnik = new Korisnik(username, ime, prezime, active);
-            if (korisnik != null)
-            {
-                if (DataBase.users.ContainsKey(korisnik.Username))
+            
+                Korisnik korisnik = new Korisnik(username, ime, prezime, active);
+                if (korisnik != null)
                 {
-                    Console.WriteLine("Korisnik vec postoji!");
+                    if (DataBase.users.ContainsKey(korisnik.Username))
+                    {
+                        Console.WriteLine("Korisnik vec postoji!");
+                    }
+                    else
+                    {
+                        DataBase.users.Add(korisnik.Username, korisnik);
+                        Console.WriteLine("Korisnik dodan");
+                    }
                 }
-                else
-                {
-                    DataBase.users.Add(korisnik.Username, korisnik);
-                    Console.WriteLine("Korisnik dodan");
-                }
-            }
+            
+           
         }
 
         public void DeleteAutor(string id)

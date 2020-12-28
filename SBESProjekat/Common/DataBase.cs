@@ -13,5 +13,7 @@ namespace Common
         public static Dictionary<string, Knjiga> knjige = new Dictionary<string, Knjiga>();
 
         public static Dictionary<string, Autor> autori = new Dictionary<string, Autor>();
+
+        public static List<AdminKorisnik> admins = new List<AdminKorisnik>();
     }
 }

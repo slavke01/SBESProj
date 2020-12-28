@@ -24,8 +24,10 @@ namespace Client
         public ClientProxy(NetTcpBinding binding, EndpointAddress address,string x) : base (binding,address) 
         {
             //cert auth
+            
             factory = this.CreateChannel();
         }
+
 
         public void AddAutor(string id,string ime, string prezime)
         {
@@ -39,7 +41,14 @@ namespace Client
 
         public void AddUser(string username,string ime, string prezime, bool active)
         {
-            factory.AddUser(username,ime,prezime,active);
+            try
+            {
+                factory.AddUser(username, ime, prezime, active);
+            }
+            catch (Exception e){
+
+                Console.WriteLine("Eror");
+            }
         }
 
         public void DeleteAutor(string id)

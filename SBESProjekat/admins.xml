@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<ArrayOfAdminKorisnik xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <AdminKorisnik>
+    <UserName>Slavisa</UserName>
+    <Permisije>Delete,Modify,Manage,Read</Permisije>
+  </AdminKorisnik>
+  <AdminKorisnik>
+    <UserName>nadad</UserName>
+    <Permisije>Delete,Read,Modify,Manage</Permisije>
+  </AdminKorisnik>
+  <AdminKorisnik>
+    <UserName>Deleter</UserName>
+    <Permisije>Delete,Read</Permisije>
+  </AdminKorisnik>
+  <AdminKorisnik>
+    <UserName>Reader</UserName>
+    <Permisije>Read</Permisije>
+  </AdminKorisnik>
+  <AdminKorisnik>
+    <UserName>Modifier</UserName>
+    <Permisije>Modify,Read</Permisije>
+  </AdminKorisnik>
+  <AdminKorisnik>
+    <UserName>Manager</UserName>
+    <Permisije>Manage,Read</Permisije>
+  </AdminKorisnik>
+</ArrayOfAdminKorisnik>
