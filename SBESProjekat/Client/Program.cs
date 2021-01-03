@@ -17,23 +17,13 @@ namespace Client
         static void Main(string[] args)
         {
 
-            NetTcpBinding binding = new NetTcpBinding();
-            string address = "net.tcp://localhost:9999/ServiceContract";
-            EndpointAddress endpointAddress = new EndpointAddress(new Uri(address));
+            SecurityMeni.ShowSecMen();
 
 
 
-            
-
-            using (ClientProxy proxy = new ClientProxy(binding, endpointAddress))
-            {
-
-               
-                SecurityMeni.ShowSecMen();
-                Meni.ShowMeni(proxy);
-            }
 
             Console.ReadLine();
+
 
 
         }

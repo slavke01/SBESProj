@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ServiceModel;
 using Common;
+using System.Security.Principal;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Client
 {
@@ -23,8 +25,14 @@ namespace Client
         //Drugi proxi
         public ClientProxy(NetTcpBinding binding, EndpointAddress address,string x) : base (binding,address) 
         {
-            //cert auth
-            
+            string cltCertCN = Formater.ParseName(WindowsIdentity.GetCurrent().Name);
+
+
+            this.Credentials.ServiceCertificate.Authentication.CertificateValidationMode = System.ServiceModel.Security.X509CertificateValidationMode.Custom;
+            this.Credentials.ServiceCertificate.Authentication.CustomCertificateValidator = new ClientCertValidator();
+            this.Credentials.ServiceCertificate.Authentication.RevocationMode = X509RevocationMode.NoCheck;
+
+            this.Credentials.ClientCertificate.Certificate = CertManager.GetCertificateFromStorage(StoreName.My, StoreLocation.LocalMachine, cltCertCN);
             factory = this.CreateChannel();
         }
 

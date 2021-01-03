@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Runtime.Serialization;
+using System.Security.Cryptography.X509Certificates;
 using System.Security.Principal;
+using System.ServiceModel;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -33,7 +35,7 @@ namespace Client
 
 
         public static void ShowSecMen() {
-
+            ClientProxy ret = null;
             Console.WriteLine("Izaberite nazic autentifikacije: ");
 
             int izbor;
@@ -50,28 +52,50 @@ namespace Client
 
 
 
-                    //cupamo sa treda 
-                    //custom principla windows 
-                  //  string WindIdentity = WindowsIdentity.GetCurrent().Name;
-                    //CustomPrincipal cu = new CustomPrincipal(WindIdentity);
+                    NetTcpBinding binding = new NetTcpBinding();
+                    string address = "net.tcp://localhost:9999/ServiceContract";
+                    EndpointAddress endpointAddress = new EndpointAddress(new Uri(address));
+
+
+                    ret = new ClientProxy(binding, endpointAddress);
+                    Thread.CurrentPrincipal = new CustomPrincipal(new GenericIdentity("MirkoMika"));
+                    using (ret)
+                    {
+
+
+                        Meni.ShowMeni(ret);
+                    }
 
                 } else if(izbor==2){
                     //cert sta god 
                     //custom principal cert
                     //da iscupamo sertifikat usera koji je pokrenuo 
-                   
-                    
-                    string WinIdentity = WindowsIdentity.GetCurrent().Name;
-                    WinIdentity = null;
-                   // IIdentity identity = Thread.CurrentPrincipal.Identity;
-                    GenericIdentity genericIdentity = GetGenericIdentity();
-                    string identityName = genericIdentity.Name;
-                    //CustomPrincipal cp = new CustomPrincipal(genericIdentity);
-                    string srvCertCN = Formater.ParseName(WindowsIdentity.GetCurrent().Name);
-                    Thread.CurrentPrincipal = new CustomPrincipal(new GenericIdentity(srvCertCN));
-                    
 
-                    
+                    NetTcpBinding binding = new NetTcpBinding();
+                    string address = "net.tcp://localhost:9990/ServiceContract";
+
+                    binding.Security.Transport.ClientCredentialType = TcpClientCredentialType.Certificate;
+
+                    string srvCertCN = "Slavisa";
+                    X509Certificate2 srvCert = CertManager.GetCertificateFromStorage(StoreName.TrustedPeople, StoreLocation.LocalMachine, srvCertCN);
+
+
+                    EndpointAddress endpointAddress = new EndpointAddress(new Uri(address), new X509CertificateEndpointIdentity(srvCert));
+
+
+                    ret = new ClientProxy(binding, endpointAddress, "cert");
+
+                    Thread.CurrentPrincipal = new CustomPrincipal(new GenericIdentity("Mirko"));
+
+                    using (ret)
+                    {
+
+
+                        Meni.ShowMeni(ret);
+                    }
+
+
+
 
                 }
 

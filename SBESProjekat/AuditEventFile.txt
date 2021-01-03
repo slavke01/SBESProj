@@ -11,3 +11,5 @@ User DESKTOP-KP9EL2B\Citac successfully accessed to AddUser method.
 User DESKTOP-KP9EL2B\Citac is successfully  authenticated.
 User DESKTOP-KP9EL2B\Citac is successfully  authenticated.
 User DESKTOP-KP9EL2B\Citac can not access to DeleteUser method. No Delete permission.
+User DESKTOP-A3ISBIM\Slavisa is successfully  authenticated.
+User DESKTOP-A3ISBIM\Slavisa can not access to AddUser method. No Read permission.
