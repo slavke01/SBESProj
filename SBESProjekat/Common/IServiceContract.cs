@@ -46,5 +46,10 @@ namespace Common
         [OperationContract]
         void IzmjeniKnjiga(string id, string naziv, string zanr);
 
+        [OperationContract]
+        void AddBookToUser(string id, string username);
+
+        [OperationContract]
+        string ShowIznajmljene(string username);
     }
 }

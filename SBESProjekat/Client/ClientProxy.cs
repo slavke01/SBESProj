@@ -62,7 +62,20 @@ namespace Client
             }
             
         }
+        public void AddBookToUser(string id, string username)
+        {
+            try
+            {
 
+                factory.AddBookToUser(id, username);
+
+            }
+            catch (Exception e)
+            {
+
+                Console.WriteLine("Greska prilikom iznajmljivanja.");
+            }
+        }
         public void AddUser(string username,string ime, string prezime, bool active)
         {
             try
@@ -162,7 +175,11 @@ namespace Client
                 return factory.ShowAutors();
             
         }
+        public string ShowIznajmljene(string username)
+        {
 
+            return factory.ShowIznajmljene(username);
+        }
         public string ShowBooks()
         {
             return factory.ShowBooks();

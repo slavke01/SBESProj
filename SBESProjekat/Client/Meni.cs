@@ -33,6 +33,8 @@ namespace Client
                             Console.WriteLine("2. Izmjena korisnika.");
                             Console.WriteLine("3. Brisanje Korisnika.");
                             Console.WriteLine("4. Ispisi sve korisnike.");
+                            Console.WriteLine("5. Iznajmi Knjigu.");
+                            Console.WriteLine("6. Prikazi iznajmljene knjige korisnika.");
                             Console.WriteLine("0. Izlaz");
                             kor = Int32.Parse(Console.ReadLine());
 
@@ -87,6 +89,26 @@ namespace Client
                                 case 4:
                                     Console.WriteLine(proxy.ShowUsers());
                                     break;
+
+                                case 5:
+
+                                    Console.WriteLine("Unesite username korisnika koji iznajmljuje knjigu");
+                                    username = Console.ReadLine();
+
+                                    Console.WriteLine("Unesite ID knige koja se iznajmljuje.");
+                                    string id_iznajmljivanje = Console.ReadLine();
+
+                                    proxy.AddBookToUser(id_iznajmljivanje, username);
+                                    break;
+
+                                case 6:
+                                    Console.WriteLine("Unesite username korisnika cije knjige se prikazuju.");
+                                    username = Console.ReadLine();
+
+                                    Console.WriteLine(proxy.ShowIznajmljene(username));
+                                    break;
+
+
                             }
 
 

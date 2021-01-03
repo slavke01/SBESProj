@@ -27,6 +27,16 @@ namespace Server
                     {
                         Console.WriteLine("Autor vec postoji!");
                         // da li i ovde treba??? think!
+                        try
+                        {
+
+                            string createText = $"User {principal.Identity.Name} successfully accessed to AddAuthor method.";
+                            FileHelper.WriteInTxt(createText);
+                        }
+                        catch (ArgumentException e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
                     }
                     else
                     {
@@ -82,6 +92,15 @@ namespace Server
                     if (DataBase.knjige.ContainsKey(knjiga.Id))
                     {
                         Console.WriteLine("Knjiga vec postoji!");
+                        try
+                        {
+                            string createText = $"User {principal.Identity.Name} successfully accessed to AddKnjiga method.";
+                            FileHelper.WriteInTxt(createText);
+                        }
+                        catch (ArgumentException e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
                     }
                     else
                     {
@@ -125,7 +144,70 @@ namespace Server
         }
 
         //[PrincipalPermission(SecurityAction.Demand, Role = "Read")]
+        public void AddBookToUser(string id, string username)
+        {
+            CustomPrincipal principal = Thread.CurrentPrincipal as CustomPrincipal;
 
+            if (Thread.CurrentPrincipal.IsInRole("Manage"))
+            {
+
+
+                if (!DataBase.users.ContainsKey(username))
+                {
+
+                    Console.WriteLine("Korisnik ne postoji!");
+                   
+
+                }
+
+                if (!DataBase.knjige.ContainsKey(id))
+                {
+
+                    Console.WriteLine("Knjiga ne postoji");
+
+                }
+
+                if (DataBase.users[username].Iznajmljene.Count >= 5)
+                {
+                    Console.WriteLine("Korisnik je iznajmio maksimalni broj knjiga.");
+
+                }
+
+                DataBase.users[username].Iznajmljene.Add(DataBase.knjige[id]);
+                Console.WriteLine("Knjiga Iznajmljena");
+                try
+                {
+                    // Audit.AuthorizationSuccess(principal.Identity.Name, OperationContext.Current.IncomingMessageHeaders.Action);
+                    string createText = $"User {principal.Identity.Name} successfully accessed to AddBookToUser method.";
+                    FileHelper.WriteInTxt(createText);
+
+                }
+                catch (ArgumentException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+
+            }
+            else
+            {
+                try
+                {
+                    // Audit.AuthorizationFailed(principal.Identity.Name, OperationContext.Current.IncomingMessageHeaders.Action, "No read permission.");
+                    string createText = $"User {principal.Identity.Name} can not access to AddBookToUser method. No Manage permission.";
+                    FileHelper.WriteInTxt(createText);
+
+
+                }
+                catch (ArgumentException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+
+                string userName = Formater.ParseName(Thread.CurrentPrincipal.Identity.Name);
+                throw new FaultException("User " + userName +
+                    " try to call AddBookToUser method. AddBookToUser method need  Manage permission.");
+            }
+        }
         public void AddUser(string username,string ime,string prezime ,bool active)
         {
             CustomPrincipal principal = Thread.CurrentPrincipal as CustomPrincipal;
@@ -137,6 +219,18 @@ namespace Server
                     if (DataBase.users.ContainsKey(korisnik.Username))
                     {
                         Console.WriteLine("Korisnik vec postoji!");
+                        try
+                        {
+                            // Audit.AuthorizationSuccess(principal.Identity.Name, OperationContext.Current.IncomingMessageHeaders.Action);
+                            string createText = $"User {principal.Identity.Name} successfully accessed to AddUser method.";
+                            FileHelper.WriteInTxt(createText);
+
+                        }
+                        catch (ArgumentException e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
+
                     }
                     else
                     {
@@ -211,6 +305,15 @@ namespace Server
                 }
                 else
                 {
+                    try
+                    {
+                        string createText = $"User {principal.Identity.Name} successfully accessed to DeleteAutor method.";
+                        FileHelper.WriteInTxt(createText);
+                    }
+                    catch (ArgumentException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
                     Console.WriteLine("Autor ne postoji.");
 
                 }
@@ -259,6 +362,15 @@ namespace Server
                 }
                 else
                 {
+                    try
+                    {
+                        string createText = $"User {principal.Identity.Name} successfully accessed to DeleteKnjiga method.";
+                        FileHelper.WriteInTxt(createText);
+                    }
+                    catch (ArgumentException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
                     Console.WriteLine("Knjiga ne postoji.");
                     //??
                 }
@@ -305,6 +417,15 @@ namespace Server
                 else
                 {
                     Console.WriteLine("Korisnik ne postoji.");
+                    try
+                    {
+                        string createText = $"User {principal.Identity.Name} successfully accessed to DeleteUser method.";
+                        FileHelper.WriteInTxt(createText);
+                    }
+                    catch (ArgumentException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
                     //korisnik kada dodje ovde on ima permisju za brisanje sto znaci da se moze logovati  je l tako?
                     //znaci i ovde pisemo try catch kao i gore ili samo ako je operacija uspesno izvrsena?
                 }
@@ -356,6 +477,15 @@ namespace Server
                 {
                     //zamjeniti sa custom exceptions mozda
                     Console.WriteLine("Autor sa ovim ID-em ne postoji");
+                    try
+                    {
+                        string createText = $"User {principal.Identity.Name} successfully accessed to IzmjeniAutor method.";
+                        FileHelper.WriteInTxt(createText);
+                    }
+                    catch (ArgumentException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
                 }
 
             }
@@ -404,6 +534,15 @@ namespace Server
                 {
                     //zamjeniti sa custom exceptions mozda
                     Console.WriteLine("Knjiga sa ovim ID-em ne postoji");
+                    try
+                    {
+                        string createText = $"User {principal.Identity.Name} successfully accessed to IzmjeniKnjiga method.";
+                        FileHelper.WriteInTxt(createText);
+                    }
+                    catch (ArgumentException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
                 }
             }
             else
@@ -450,6 +589,15 @@ namespace Server
                 {
                     //zamjeniti sa custom exceptions mozda
                     Console.WriteLine("Korisnik sa ovim ID-em ne postoji");
+                    try
+                    {
+                        string createText = $"User {principal.Identity.Name} successfully accessed to IzmjeniUser method.";
+                        FileHelper.WriteInTxt(createText);
+                    }
+                    catch (ArgumentException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
                 }
             }
             else
@@ -494,6 +642,27 @@ namespace Server
                 retVal = retVal + x + "\n"; 
             }
             Console.WriteLine("Knjige prikazanje.");
+            return retVal;
+        }
+
+        public string ShowIznajmljene(string username)
+        {
+            string retVal = "";
+
+            if (!DataBase.users.ContainsKey(username))
+            {
+
+                Console.WriteLine("Korisnik ne postoji.");
+
+            }
+
+            foreach (Knjiga k in DataBase.users[username].Iznajmljene)
+            {
+
+                string x = string.Format("ID knjige: {0} , Naziv knjige: {1} , Zanr knjige {2}, Ime pisca: {3}  ", k.Id, k.Naziv, k.Zanr, k.Pisac.Ime);
+                retVal = retVal + x + "\n";
+            }
+            Console.WriteLine("Iznajmljene knjige prikazane.");
             return retVal;
         }
 
