@@ -31,12 +31,28 @@ namespace Client
 
         public void AddAutor(string id,string ime, string prezime)
         {
-            factory.AddAutor(id,ime,prezime);
+            try
+            {
+                factory.AddAutor(id, ime, prezime);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("Greska prilikom dodavanja autora.");
+            }
+            
         }
 
         public void AddKnjiga(string id, string naziv,string zanr,string id_autora)
         {
-            factory.AddKnjiga(id,naziv,zanr,id_autora);
+            try
+            {
+                factory.AddKnjiga(id, naziv, zanr, id_autora);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("Greska prilikom dodavanja knjige.");
+            }
+            
         }
 
         public void AddUser(string username,string ime, string prezime, bool active)
@@ -45,45 +61,98 @@ namespace Client
             {
                 factory.AddUser(username, ime, prezime, active);
             }
-            catch (Exception e){
+          catch (Exception e){
 
-                Console.WriteLine("Eror");
+                Console.WriteLine("Greska prilikom dodavanja koirsnika.");
             }
         }
 
         public void DeleteAutor(string id)
         {
-            factory.DeleteAutor(id);
+            try
+            {
+                factory.DeleteAutor(id);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("Greska prilikom brisanja autora.");
+            }
+            
         }
 
         public void DeleteKnjiga(string id)
         {
-            factory.DeleteKnjiga(id);
+            try
+            {
+                factory.DeleteKnjiga(id);
+
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("Greska prilikom brisanja knjige.");
+            }
+            
         }
 
         public void DeleteUser(string username)
         {
-            factory.DeleteUser(username);
+            try
+            {
+                factory.DeleteUser(username);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("Greska prilikom brisanja koirisnika.");
+            }
+            
         }
 
         public void IzmjeniAutor(string id, string ime, string prezime)
         {
-            factory.IzmjeniAutor(id, ime, prezime);
+            try
+            {
+                factory.IzmjeniAutor(id, ime, prezime);
+            } 
+            catch(Exception e)
+            {
+                Console.WriteLine("Greska prilikom izmene autora.");
+            }
         }
 
         public void IzmjeniKnjiga(string id, string naziv, string zanr)
         {
-            factory.IzmjeniKnjiga(id,naziv,zanr);
+            try
+            {
+                factory.IzmjeniKnjiga(id, naziv, zanr);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("Greska prilikom izmene knjige.");
+            }
+            
         }
 
         public void IzmjeniUser(string username, string ime, string prezime, bool active)
         {
-            factory.IzmjeniUser(username,ime,prezime,active);
+
+            try
+            {
+                factory.IzmjeniUser(username, ime, prezime, active);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("Greska prilikom izmene korisnika.");
+            }
+           
         }
 
         public string ShowAutors()
         {
-            return factory.ShowAutors();
+
+           
+            
+                return factory.ShowAutors();
+            
         }
 
         public string ShowBooks()

@@ -40,9 +40,37 @@ namespace Common
                 return false;
             }
 
-            evaluationContext.Properties["Principal"] =
-                new CustomPrincipal((WindowsIdentity)identities[0]);
-            return true;
+            WindowsIdentity windowsIdentity = identities[0] as WindowsIdentity;
+
+            try
+            {
+                string text = $"User {windowsIdentity.Name} is successfully  authenticated.";
+                FileHelper.WriteInTxt(text);
+            }
+            catch(ArgumentException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            /*
+            if ()
+            {
+                evaluationContext.Properties["Principal"] =
+                   new CustomPrincipal((GenericIdentity)identities[0]);
+                return true;
+
+
+            }
+            else
+            {
+            */
+
+
+                evaluationContext.Properties["Principal"] =
+                    new CustomPrincipal((WindowsIdentity)identities[0]);
+                return true;
+
+          //  }
         }
     }
 }

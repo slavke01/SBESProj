@@ -36,6 +36,7 @@
     <Reference Include="System.IdentityModel" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,6 +52,7 @@
     <Compile Include="CustomPrincipal.cs" />
     <Compile Include="DataBase.cs" />
     <Compile Include="DataIO.cs" />
+    <Compile Include="FileHelper.cs" />
     <Compile Include="Formater.cs" />
     <Compile Include="IServiceContract.cs" />
     <Compile Include="Knjiga.cs" />

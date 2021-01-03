@@ -28,6 +28,8 @@ namespace Client
             using (ClientProxy proxy = new ClientProxy(binding, endpointAddress))
             {
 
+               
+                SecurityMeni.ShowSecMen();
                 Meni.ShowMeni(proxy);
             }
 

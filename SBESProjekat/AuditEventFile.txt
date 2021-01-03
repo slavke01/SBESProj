@@ -1,0 +1,13 @@
+User DESKTOP-KP9EL2B\nadad is successfully  authenticated.
+User DESKTOP-KP9EL2B\nadad successfully accessed to AddUser method.
+User DESKTOP-KP9EL2B\nadad is successfully  authenticated.
+User DESKTOP-KP9EL2B\nadad is successfully  authenticated.
+User DESKTOP-KP9EL2B\nadad successfully accessed to AddUser method.
+User DESKTOP-KP9EL2B\nadad is successfully  authenticated.
+User DESKTOP-KP9EL2B\nadad is successfully  authenticated.
+User DESKTOP-KP9EL2B\nadad can not access to DeleteUser method. No Delete permission.
+User DESKTOP-KP9EL2B\Citac is successfully  authenticated.
+User DESKTOP-KP9EL2B\Citac successfully accessed to AddUser method.
+User DESKTOP-KP9EL2B\Citac is successfully  authenticated.
+User DESKTOP-KP9EL2B\Citac is successfully  authenticated.
+User DESKTOP-KP9EL2B\Citac can not access to DeleteUser method. No Delete permission.

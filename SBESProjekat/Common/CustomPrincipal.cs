@@ -10,7 +10,8 @@ namespace Common
     public class CustomPrincipal : IPrincipal
     {
 
-        WindowsIdentity identity = null;
+        IIdentity identity = null;
+        
         string UserName = null;
         public CustomPrincipal(WindowsIdentity windowsIdentity)
         {
@@ -18,6 +19,14 @@ namespace Common
 
             this.UserName = Formater.ParseName(identity.Name);
         }
+
+        public CustomPrincipal(GenericIdentity genericIdentity)
+        {
+            identity = genericIdentity;
+
+            this.UserName = Formater.ParseName(identity.Name);
+        }
+
 
         public IIdentity Identity
         {
