@@ -40,37 +40,57 @@ namespace Common
                 return false;
             }
 
-            WindowsIdentity windowsIdentity = identities[0] as WindowsIdentity;
+           
 
-            try
-            {
-                string text = $"User {windowsIdentity.Name} is successfully  authenticated.";
-                FileHelper.WriteInTxt(text);
-            }
-            catch(ArgumentException e)
-            {
-                Console.WriteLine(e.Message);
-            }
+           
 
-            /*
-            if ()
+            if (identities[0].AuthenticationType == "X509")
             {
+
+
+
+                string[] tokens = identities[0].Name.Split(';');
+                string[] CN = tokens[0].Split('=');
+                string user = CN[1];
+                
+
+                try
+                {
+                    string text = $"User {user} is successfully  authenticated.";
+                    FileHelper.WriteInXML(text);
+                }
+                catch (ArgumentException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
                 evaluationContext.Properties["Principal"] =
-                   new CustomPrincipal((GenericIdentity)identities[0]);
+                   new CustomPrincipal(new GenericIdentity(user));
                 return true;
 
 
             }
             else
             {
-            */
 
+                WindowsIdentity windowsIdentity = identities[0] as WindowsIdentity;
 
+                try
+                {
+                    string text = $"User {windowsIdentity.Name} is successfully  authenticated.";
+                    FileHelper.WriteInTxt(text);
+                }
+                catch (ArgumentException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
                 evaluationContext.Properties["Principal"] =
                     new CustomPrincipal((WindowsIdentity)identities[0]);
+
                 return true;
 
-          //  }
+            }
+
+          
         }
     }
 }

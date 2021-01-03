@@ -1,0 +1,11 @@
+﻿<AuditEvent
+  Log="User Slavisa is successfully  authenticated." /><AuditEvent
+  Log="User Slavisa successfully accessed to AddUser method." /><AuditEvent
+  Log="User Slavisa is successfully  authenticated." /><AuditEvent
+  Log="User Slavisa is successfully  authenticated." /><AuditEvent
+  Log="User Slavisa successfully accessed to DeleteUser method." /><AuditEvent
+  Log="User Slavisa is successfully  authenticated." /><AuditEvent
+  Log="User Slavisa is successfully  authenticated." /><AuditEvent
+  Log="User Slavisa successfully accessed to AddAutor method." /><AuditEvent
+  Log="User Slavisa is successfully  authenticated." /><AuditEvent
+  Log="User Slavisa successfully accessed to DeleteAutor method." />

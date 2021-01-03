@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Permissions;
+using System.Security.Principal;
 using System.ServiceModel;
 using System.Text;
 using System.Threading;
@@ -26,16 +27,39 @@ namespace Server
                     if (DataBase.autori.ContainsKey(autor.Id))
                     {
                         Console.WriteLine("Autor vec postoji!");
-                        // da li i ovde treba??? think!
-                        try
+                        if (principal.Identity is GenericIdentity)
                         {
 
-                            string createText = $"User {principal.Identity.Name} successfully accessed to AddAuthor method.";
-                            FileHelper.WriteInTxt(createText);
+
+                            try
+                            {
+                                // Audit.AuthorizationSuccess(principal.Identity.Name, OperationContext.Current.IncomingMessageHeaders.Action);
+                                string createText = $"User {principal.Identity.Name} successfully accessed to AddAutor method.";
+                                FileHelper.WriteInXML(createText);
+
+                            }
+                            catch (ArgumentException e)
+                            {
+                                Console.WriteLine(e.Message);
+                            }
+
+
                         }
-                        catch (ArgumentException e)
+                        else
                         {
-                            Console.WriteLine(e.Message);
+
+
+                            try
+                            {
+                                // Audit.AuthorizationSuccess(principal.Identity.Name, OperationContext.Current.IncomingMessageHeaders.Action);
+                                string createText = $"User {principal.Identity.Name} successfully accessed to AddAutor method.";
+                                FileHelper.WriteInTxt(createText);
+
+                            }
+                            catch (ArgumentException e)
+                            {
+                                Console.WriteLine(e.Message);
+                            }
                         }
                     }
                     else
@@ -44,16 +68,40 @@ namespace Server
                         Console.WriteLine("Autor uspesno dodan.");
 
 
-                        //logovanje
-                        try
+
+                        if (principal.Identity is GenericIdentity)
                         {
-                            
-                            string createText = $"User {principal.Identity.Name} successfully accessed to AddAuthor method.";
-                            FileHelper.WriteInTxt(createText);
+
+
+                            try
+                            {
+                                // Audit.AuthorizationSuccess(principal.Identity.Name, OperationContext.Current.IncomingMessageHeaders.Action);
+                                string createText = $"User {principal.Identity.Name} successfully accessed to AddAutor method.";
+                                FileHelper.WriteInXML(createText);
+
+                            }
+                            catch (ArgumentException e)
+                            {
+                                Console.WriteLine(e.Message);
+                            }
+
+
                         }
-                        catch (ArgumentException e)
+                        else
                         {
-                            Console.WriteLine(e.Message);
+
+
+                            try
+                            {
+                                // Audit.AuthorizationSuccess(principal.Identity.Name, OperationContext.Current.IncomingMessageHeaders.Action);
+                                string createText = $"User {principal.Identity.Name} successfully accessed to AddAutor method.";
+                                FileHelper.WriteInTxt(createText);
+
+                            }
+                            catch (ArgumentException e)
+                            {
+                                Console.WriteLine(e.Message);
+                            }
                         }
 
                     }
@@ -62,16 +110,39 @@ namespace Server
             }
             else
             {
-                try
+                if (principal.Identity is GenericIdentity)
                 {
-                    
-                    string createText = $"User {principal.Identity.Name} can not access to AddAuthor method. No Read permission.";
-                    FileHelper.WriteInTxt(createText);
+
+
+                    try
+                    {
+                        // Audit.AuthorizationSuccess(principal.Identity.Name, OperationContext.Current.IncomingMessageHeaders.Action);
+                        string createText = $"User {principal.Identity.Name} can not access AddAutor method no read permision.";
+                        FileHelper.WriteInXML(createText);
+
+                    }
+                    catch (ArgumentException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+
 
                 }
-                catch(ArgumentException e)
+                else
                 {
-                    Console.WriteLine(e.Message);
+
+
+                    try
+                    {
+                        // Audit.AuthorizationSuccess(principal.Identity.Name, OperationContext.Current.IncomingMessageHeaders.Action);
+                        string createText = $"User {principal.Identity.Name} can not access AddAutor method no read permision.";
+                        FileHelper.WriteInTxt(createText);
+
+                    }
+                    catch (ArgumentException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
                 }
 
                 string userName = Formater.ParseName(Thread.CurrentPrincipal.Identity.Name);
@@ -92,14 +163,39 @@ namespace Server
                     if (DataBase.knjige.ContainsKey(knjiga.Id))
                     {
                         Console.WriteLine("Knjiga vec postoji!");
-                        try
+                        if (principal.Identity is GenericIdentity)
                         {
-                            string createText = $"User {principal.Identity.Name} successfully accessed to AddKnjiga method.";
-                            FileHelper.WriteInTxt(createText);
+
+
+                            try
+                            {
+                                // Audit.AuthorizationSuccess(principal.Identity.Name, OperationContext.Current.IncomingMessageHeaders.Action);
+                                string createText = $"User {principal.Identity.Name} successfully accessed to AddBook method.";
+                                FileHelper.WriteInXML(createText);
+
+                            }
+                            catch (ArgumentException e)
+                            {
+                                Console.WriteLine(e.Message);
+                            }
+
+
                         }
-                        catch (ArgumentException e)
+                        else
                         {
-                            Console.WriteLine(e.Message);
+
+
+                            try
+                            {
+                                // Audit.AuthorizationSuccess(principal.Identity.Name, OperationContext.Current.IncomingMessageHeaders.Action);
+                                string createText = $"User {principal.Identity.Name} successfully accessed to AddBook method.";
+                                FileHelper.WriteInTxt(createText);
+
+                            }
+                            catch (ArgumentException e)
+                            {
+                                Console.WriteLine(e.Message);
+                            }
                         }
                     }
                     else
@@ -109,14 +205,40 @@ namespace Server
                         Console.WriteLine("Knjiga dodana");
 
 
-                        try
+
+                        if (principal.Identity is GenericIdentity)
                         {
-                            string createText = $"User {principal.Identity.Name} successfully accessed to AddKnjiga method.";
-                            FileHelper.WriteInTxt(createText);
+
+
+                            try
+                            {
+                                // Audit.AuthorizationSuccess(principal.Identity.Name, OperationContext.Current.IncomingMessageHeaders.Action);
+                                string createText = $"User {principal.Identity.Name} successfully accessed to AddBook method.";
+                                FileHelper.WriteInXML(createText);
+
+                            }
+                            catch (ArgumentException e)
+                            {
+                                Console.WriteLine(e.Message);
+                            }
+
+
                         }
-                        catch (ArgumentException e)
+                        else
                         {
-                            Console.WriteLine(e.Message);
+
+
+                            try
+                            {
+                                // Audit.AuthorizationSuccess(principal.Identity.Name, OperationContext.Current.IncomingMessageHeaders.Action);
+                                string createText = $"User {principal.Identity.Name} successfully accessed to AddBook method.";
+                                FileHelper.WriteInTxt(createText);
+
+                            }
+                            catch (ArgumentException e)
+                            {
+                                Console.WriteLine(e.Message);
+                            }
                         }
 
                     }
@@ -125,15 +247,36 @@ namespace Server
             }
             else
             {
-                try
-                {
-                    string createText = $"User {principal.Identity.Name} can not access to AddKnjiga method. No Read permission.";
-                    FileHelper.WriteInTxt(createText);
 
-                }
-                catch (ArgumentException e)
-                {
-                    Console.WriteLine(e.Message);
+
+
+                if (principal.Identity is GenericIdentity) {
+
+                    try
+                    {
+                        string createText = $"User {principal.Identity.Name} can not access to AddKnjiga method. No Read permission.";
+                        FileHelper.WriteInXML(createText);
+
+                    }
+                    catch (ArgumentException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+
+
+
+
+                } else {
+                    try
+                    {
+                        string createText = $"User {principal.Identity.Name} can not access to AddKnjiga method. No Read permission.";
+                        FileHelper.WriteInTxt(createText);
+
+                    }
+                    catch (ArgumentException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
                 }
 
                 string userName = Formater.ParseName(Thread.CurrentPrincipal.Identity.Name);
@@ -150,59 +293,104 @@ namespace Server
 
             if (Thread.CurrentPrincipal.IsInRole("Manage"))
             {
+                if (principal.Identity is GenericIdentity)
+                {
+                    try
+                    {
+                        // Audit.AuthorizationSuccess(principal.Identity.Name, OperationContext.Current.IncomingMessageHeaders.Action);
+                        string createText = $"User {principal.Identity.Name} successfully accessed to AddBookToUser method.";
+                        FileHelper.WriteInXML(createText);
 
+                    }
+                    catch (ArgumentException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        // Audit.AuthorizationSuccess(principal.Identity.Name, OperationContext.Current.IncomingMessageHeaders.Action);
+                        string createText = $"User {principal.Identity.Name} successfully accessed to AddBookToUser method.";
+                        FileHelper.WriteInTxt(createText);
+
+                    }
+                    catch (ArgumentException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                }
 
                 if (!DataBase.users.ContainsKey(username))
                 {
 
                     Console.WriteLine("Korisnik ne postoji!");
-                   
 
+                    return;
                 }
 
                 if (!DataBase.knjige.ContainsKey(id))
                 {
 
                     Console.WriteLine("Knjiga ne postoji");
-
+                    return;
                 }
 
                 if (DataBase.users[username].Iznajmljene.Count >= 5)
                 {
                     Console.WriteLine("Korisnik je iznajmio maksimalni broj knjiga.");
+                    return;
+                }
 
+                if (!DataBase.users[username].Aktivan) {
+
+                    Console.WriteLine("Korisnik nije aktivan.");
                 }
 
                 DataBase.users[username].Iznajmljene.Add(DataBase.knjige[id]);
                 Console.WriteLine("Knjiga Iznajmljena");
-                try
-                {
-                    // Audit.AuthorizationSuccess(principal.Identity.Name, OperationContext.Current.IncomingMessageHeaders.Action);
-                    string createText = $"User {principal.Identity.Name} successfully accessed to AddBookToUser method.";
-                    FileHelper.WriteInTxt(createText);
 
-                }
-                catch (ArgumentException e)
-                {
-                    Console.WriteLine(e.Message);
-                }
+
+              
 
             }
             else
             {
-                try
-                {
-                    // Audit.AuthorizationFailed(principal.Identity.Name, OperationContext.Current.IncomingMessageHeaders.Action, "No read permission.");
-                    string createText = $"User {principal.Identity.Name} can not access to AddBookToUser method. No Manage permission.";
-                    FileHelper.WriteInTxt(createText);
 
 
+                if (principal.Identity is GenericIdentity) {
+
+                    try
+                    {
+                        // Audit.AuthorizationFailed(principal.Identity.Name, OperationContext.Current.IncomingMessageHeaders.Action, "No read permission.");
+                        string createText = $"User {principal.Identity.Name} can not access to AddBookToUser method. No Manage permission.";
+                        FileHelper.WriteInXML(createText);
+
+
+                    }
+                    catch (ArgumentException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+
+
+
+
+                } else {
+                    try
+                    {
+                        // Audit.AuthorizationFailed(principal.Identity.Name, OperationContext.Current.IncomingMessageHeaders.Action, "No read permission.");
+                        string createText = $"User {principal.Identity.Name} can not access to AddBookToUser method. No Manage permission.";
+                        FileHelper.WriteInTxt(createText);
+
+
+                    }
+                    catch (ArgumentException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
                 }
-                catch (ArgumentException e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-
                 string userName = Formater.ParseName(Thread.CurrentPrincipal.Identity.Name);
                 throw new FaultException("User " + userName +
                     " try to call AddBookToUser method. AddBookToUser method need  Manage permission.");
@@ -219,16 +407,38 @@ namespace Server
                     if (DataBase.users.ContainsKey(korisnik.Username))
                     {
                         Console.WriteLine("Korisnik vec postoji!");
-                        try
+
+                        if (principal.Identity is GenericIdentity)
                         {
-                            // Audit.AuthorizationSuccess(principal.Identity.Name, OperationContext.Current.IncomingMessageHeaders.Action);
-                            string createText = $"User {principal.Identity.Name} successfully accessed to AddUser method.";
-                            FileHelper.WriteInTxt(createText);
+
+                            try
+                            {
+                                // Audit.AuthorizationSuccess(principal.Identity.Name, OperationContext.Current.IncomingMessageHeaders.Action);
+                                string createText = $"User {principal.Identity.Name} successfully accessed to AddUser method.";
+                                FileHelper.WriteInXML(createText);
+
+                            }
+                            catch (ArgumentException e)
+                            {
+                                Console.WriteLine(e.Message);
+                            }
 
                         }
-                        catch (ArgumentException e)
+                        else
                         {
-                            Console.WriteLine(e.Message);
+
+
+                            try
+                            {
+                                // Audit.AuthorizationSuccess(principal.Identity.Name, OperationContext.Current.IncomingMessageHeaders.Action);
+                                string createText = $"User {principal.Identity.Name} successfully accessed to AddUser method.";
+                                FileHelper.WriteInTxt(createText);
+
+                            }
+                            catch (ArgumentException e)
+                            {
+                                Console.WriteLine(e.Message);
+                            }
                         }
 
                     }
@@ -237,18 +447,56 @@ namespace Server
                         DataBase.users.Add(korisnik.Username, korisnik);
                         Console.WriteLine("Korisnik uspesno dodan");
 
-                        try
+
+                        if (principal.Identity is GenericIdentity)
                         {
-                            // Audit.AuthorizationSuccess(principal.Identity.Name, OperationContext.Current.IncomingMessageHeaders.Action);
-                            string createText = $"User {principal.Identity.Name} successfully accessed to AddUser method.";
-                            FileHelper.WriteInTxt(createText);
+
+
+                            try
+                            {
+                                // Audit.AuthorizationSuccess(principal.Identity.Name, OperationContext.Current.IncomingMessageHeaders.Action);
+                                string createText = $"User {principal.Identity.Name} successfully accessed to AddUser method.";
+                                FileHelper.WriteInXML(createText);
+
+                            }
+                            catch (ArgumentException e)
+                            {
+                                Console.WriteLine(e.Message);
+                            }
+
 
                         }
-                        catch(ArgumentException e)
+                        else
                         {
-                            Console.WriteLine(e.Message);
-                        }
 
+                            if (principal.Identity is GenericIdentity) {
+
+                                try
+                                {
+                                    // Audit.AuthorizationSuccess(principal.Identity.Name, OperationContext.Current.IncomingMessageHeaders.Action);
+                                    string createText = $"User {principal.Identity.Name} successfully accessed to AddUser method.";
+                                    FileHelper.WriteInXML(createText);
+
+                                }
+                                catch (ArgumentException e)
+                                {
+                                    Console.WriteLine(e.Message);
+                                }
+
+                            } else {
+                                try
+                                {
+                                    // Audit.AuthorizationSuccess(principal.Identity.Name, OperationContext.Current.IncomingMessageHeaders.Action);
+                                    string createText = $"User {principal.Identity.Name} successfully accessed to AddUser method.";
+                                    FileHelper.WriteInTxt(createText);
+
+                                }
+                                catch (ArgumentException e)
+                                {
+                                    Console.WriteLine(e.Message);
+                                }
+                            }
+                        }
 
                     }
 
@@ -258,19 +506,37 @@ namespace Server
            }
            else
            {
-                try
-                {
-                    // Audit.AuthorizationFailed(principal.Identity.Name, OperationContext.Current.IncomingMessageHeaders.Action, "No read permission.");
-                    string createText = $"User {principal.Identity.Name} can not access to AddUser method. No Read permission.";
-                    FileHelper.WriteInTxt(createText);
 
+
+                if (principal.Identity is GenericIdentity) {
+                    try
+                    {
+                        // Audit.AuthorizationFailed(principal.Identity.Name, OperationContext.Current.IncomingMessageHeaders.Action, "No read permission.");
+                        string createText = $"User {principal.Identity.Name} can not access to AddUser method. No Read permission.";
+                        FileHelper.WriteInXML(createText);
+
+
+                    }
+                    catch (ArgumentException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
 
                 }
-                catch (ArgumentException e)
-                {
-                    Console.WriteLine(e.Message);
-                }
+                else {
+                    try
+                    {
+                        // Audit.AuthorizationFailed(principal.Identity.Name, OperationContext.Current.IncomingMessageHeaders.Action, "No read permission.");
+                        string createText = $"User {principal.Identity.Name} can not access to AddUser method. No Read permission.";
+                        FileHelper.WriteInTxt(createText);
 
+
+                    }
+                    catch (ArgumentException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                }
                 string userName = Formater.ParseName(Thread.CurrentPrincipal.Identity.Name);
                 throw new FaultException("User " + userName +
                     " try to call AddUser method. AddUser method need  Read permission.");
@@ -292,27 +558,59 @@ namespace Server
                     DataBase.autori.Remove(id);
                     Console.WriteLine("Autor uspesno obrisan.");
 
+                    if (principal.Identity is GenericIdentity) {
 
-                    try
-                    {
-                        string createText = $"User {principal.Identity.Name} successfully accessed to DeleteAutor method.";
-                        FileHelper.WriteInTxt(createText);
-                    }
-                    catch (ArgumentException e)
-                    {
-                        Console.WriteLine(e.Message);
+                        try
+                        {
+                            string createText = $"User {principal.Identity.Name} successfully accessed to DeleteAutor method.";
+                            FileHelper.WriteInXML(createText);
+                        }
+                        catch (ArgumentException e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
+
+
+
+                    } else {
+
+                        try
+                        {
+                            string createText = $"User {principal.Identity.Name} successfully accessed to DeleteAutor method.";
+                            FileHelper.WriteInTxt(createText);
+                        }
+                        catch (ArgumentException e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
                     }
                 }
                 else
                 {
-                    try
-                    {
-                        string createText = $"User {principal.Identity.Name} successfully accessed to DeleteAutor method.";
-                        FileHelper.WriteInTxt(createText);
+
+                    if (principal.Identity is GenericIdentity) {
+                        try
+                        {
+                            string createText = $"User {principal.Identity.Name} successfully accessed to DeleteAutor method.";
+                            FileHelper.WriteInXML(createText);
+                        }
+                        catch (ArgumentException e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
+
+
                     }
-                    catch (ArgumentException e)
-                    {
-                        Console.WriteLine(e.Message);
+                    else {
+                        try
+                        {
+                            string createText = $"User {principal.Identity.Name} successfully accessed to DeleteAutor method.";
+                            FileHelper.WriteInTxt(createText);
+                        }
+                        catch (ArgumentException e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
                     }
                     Console.WriteLine("Autor ne postoji.");
 
@@ -321,16 +619,29 @@ namespace Server
             }
             else
             {
-                try
-                {
-                    string createText = $"User {principal.Identity.Name} can not access to DeleteAuthor method. No Delete permission.";
-                    FileHelper.WriteInTxt(createText);
-                }
-                catch (ArgumentException e)
-                {
-                    Console.WriteLine(e.Message);
-                }
 
+                if (principal.Identity is GenericIdentity) {
+                    try
+                    {
+                        string createText = $"User {principal.Identity.Name} can not access to DeleteAuthor method. No Delete permission.";
+                        FileHelper.WriteInXML(createText);
+                    }
+                    catch (ArgumentException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+
+                } else {
+                    try
+                    {
+                        string createText = $"User {principal.Identity.Name} can not access to DeleteAuthor method. No Delete permission.";
+                        FileHelper.WriteInTxt(createText);
+                    }
+                    catch (ArgumentException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                }
                 string userName = Formater.ParseName(Thread.CurrentPrincipal.Identity.Name);
                 throw new FaultException("User " + userName +
                     " try to call DeleteAutor method. DeleteAutor method need  Delete permission.");
@@ -349,27 +660,56 @@ namespace Server
                 {
                     DataBase.knjige.Remove(id);
                     Console.WriteLine("Knjiga uspesno obrisana.");
+                    if (principal.Identity is GenericIdentity) {
 
-                    try
-                    {
-                        string createText = $"User {principal.Identity.Name} successfully accessed to DeleteKnjiga method.";
-                        FileHelper.WriteInTxt(createText);
-                    }
-                    catch(ArgumentException e)
-                    {
-                        Console.WriteLine(e.Message);
+                        try
+                        {
+                            string createText = $"User {principal.Identity.Name} successfully accessed to DeleteKnjiga method.";
+                            FileHelper.WriteInXML(createText);
+                        }
+                        catch (ArgumentException e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
+
+                    } else {
+                        try
+                        {
+                            string createText = $"User {principal.Identity.Name} successfully accessed to DeleteKnjiga method.";
+                            FileHelper.WriteInTxt(createText);
+                        }
+                        catch (ArgumentException e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
                     }
                 }
                 else
                 {
-                    try
-                    {
-                        string createText = $"User {principal.Identity.Name} successfully accessed to DeleteKnjiga method.";
-                        FileHelper.WriteInTxt(createText);
-                    }
-                    catch (ArgumentException e)
-                    {
-                        Console.WriteLine(e.Message);
+
+
+
+                    if (principal.Identity is GenericIdentity) {
+
+                        try
+                        {
+                            string createText = $"User {principal.Identity.Name} successfully accessed to DeleteKnjiga method.";
+                            FileHelper.WriteInXML(createText);
+                        }
+                        catch (ArgumentException e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
+                    } else {
+                        try
+                        {
+                            string createText = $"User {principal.Identity.Name} successfully accessed to DeleteKnjiga method.";
+                            FileHelper.WriteInTxt(createText);
+                        }
+                        catch (ArgumentException e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
                     }
                     Console.WriteLine("Knjiga ne postoji.");
                     //??
@@ -378,16 +718,32 @@ namespace Server
             }
             else
             {
-                try
-                {
-                    string createText = $"User {principal.Identity.Name} can not access to DeleteKnjiga method. No Delete permission.";
-                    FileHelper.WriteInTxt(createText);
-                }
-                catch (ArgumentException e)
-                {
-                    Console.WriteLine(e.Message);
-                }
 
+
+                if (principal.Identity is GenericIdentity) {
+                    try
+                    {
+                        string createText = $"User {principal.Identity.Name} can not access to DeleteKnjiga method. No Delete permission.";
+                        FileHelper.WriteInXML(createText);
+                    }
+                    catch (ArgumentException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+
+
+
+                } else {
+                    try
+                    {
+                        string createText = $"User {principal.Identity.Name} can not access to DeleteKnjiga method. No Delete permission.";
+                        FileHelper.WriteInTxt(createText);
+                    }
+                    catch (ArgumentException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                }
                 string userName = Formater.ParseName(Thread.CurrentPrincipal.Identity.Name);
                 throw new FaultException("User " + userName +
                     " try to call DeleteKnjiga method. DeleteKnjiga method need  Delete permission.");
@@ -403,28 +759,55 @@ namespace Server
                 {
                     DataBase.autori.Remove(username);
                     Console.WriteLine("Korisnik uspesno obrisan.");
+                    if (principal.Identity is GenericIdentity) {
+                        try
+                        {
+                            string createText = $"User {principal.Identity.Name} successfully accessed to DeleteUser method.";
+                            FileHelper.WriteInXML(createText);
+                        }
+                        catch (ArgumentException e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
 
-                    try
-                    {
-                        string createText = $"User {principal.Identity.Name} successfully accessed to DeleteUser method.";
-                        FileHelper.WriteInTxt(createText);
-                    }
-                    catch(ArgumentException e)
-                    {
-                        Console.WriteLine(e.Message);
+                    } else {
+                        try
+                        {
+                            string createText = $"User {principal.Identity.Name} successfully accessed to DeleteUser method.";
+                            FileHelper.WriteInTxt(createText);
+                        }
+                        catch (ArgumentException e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
                     }
                 }
                 else
                 {
                     Console.WriteLine("Korisnik ne postoji.");
-                    try
-                    {
-                        string createText = $"User {principal.Identity.Name} successfully accessed to DeleteUser method.";
-                        FileHelper.WriteInTxt(createText);
-                    }
-                    catch (ArgumentException e)
-                    {
-                        Console.WriteLine(e.Message);
+
+                    if (principal.Identity is GenericIdentity) {
+
+                        try
+                        {
+                            string createText = $"User {principal.Identity.Name} successfully accessed to DeleteUser method.";
+                            FileHelper.WriteInXML(createText);
+                        }
+                        catch (ArgumentException e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
+
+                    } else {
+                        try
+                        {
+                            string createText = $"User {principal.Identity.Name} successfully accessed to DeleteUser method.";
+                            FileHelper.WriteInTxt(createText);
+                        }
+                        catch (ArgumentException e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
                     }
                     //korisnik kada dodje ovde on ima permisju za brisanje sto znaci da se moze logovati  je l tako?
                     //znaci i ovde pisemo try catch kao i gore ili samo ako je operacija uspesno izvrsena?
@@ -433,17 +816,33 @@ namespace Server
             }
             else
             {
-                try
-                {
-                    
-                    string createText = $"User {principal.Identity.Name} can not access to DeleteUser method. No Delete permission.";
-                    FileHelper.WriteInTxt(createText);
-                }
-                catch (ArgumentException e)
-                {
-                    Console.WriteLine(e.Message);
-                }
 
+
+                if (principal.Identity is GenericIdentity) {
+
+                    try
+                    {
+
+                        string createText = $"User {principal.Identity.Name} can not access to DeleteUser method. No Delete permission.";
+                        FileHelper.WriteInXML(createText);
+                    }
+                    catch (ArgumentException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+
+                } else {
+                    try
+                    {
+
+                        string createText = $"User {principal.Identity.Name} can not access to DeleteUser method. No Delete permission.";
+                        FileHelper.WriteInTxt(createText);
+                    }
+                    catch (ArgumentException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                }
                 string userName = Formater.ParseName(Thread.CurrentPrincipal.Identity.Name);
                 throw new FaultException("User " + userName +
                     " try to call DeleteUser method. DeleteUser method need  delete permission.");
@@ -463,23 +862,83 @@ namespace Server
                     Console.WriteLine("Autor uspesno izmnjenjen.");
                     //Vrv pozivati audit komponentu kada bude postojala
                     //tako je rodjace,sad ce nadica to odraditi
-                    try
-                    {
-                        string createText = $"User {principal.Identity.Name} successfully accessed to IzmjeniAutor method.";
-                        FileHelper.WriteInTxt(createText);
-                    }
-                    catch(ArgumentException e)
-                    {
-                        Console.WriteLine(e.Message);
+                    if (principal.Identity is GenericIdentity) {
+
+                        try
+                        {
+                            string createText = $"User {principal.Identity.Name} successfully accessed to IzmjeniAutor method.";
+                            FileHelper.WriteInXML(createText);
+                        }
+                        catch (ArgumentException e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
+
+
+                    } else {
+                        try
+                        {
+                            string createText = $"User {principal.Identity.Name} successfully accessed to IzmjeniAutor method.";
+                            FileHelper.WriteInTxt(createText);
+                        }
+                        catch (ArgumentException e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
                     }
                 }
                 else
                 {
                     //zamjeniti sa custom exceptions mozda
                     Console.WriteLine("Autor sa ovim ID-em ne postoji");
+                    if (principal.Identity is GenericIdentity) {
+
+                        try
+                        {
+                            string createText = $"User {principal.Identity.Name} successfully accessed to IzmjeniAutor method.";
+                            FileHelper.WriteInXML(createText);
+                        }
+                        catch (ArgumentException e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
+
+
+                    } else {
+                        try
+                        {
+                            string createText = $"User {principal.Identity.Name} successfully accessed to IzmjeniAutor method.";
+                            FileHelper.WriteInTxt(createText);
+                        }
+                        catch (ArgumentException e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
+                    }
+                }
+
+            }
+            else
+            {
+
+                if (principal.Identity is GenericIdentity) {
+
                     try
                     {
-                        string createText = $"User {principal.Identity.Name} successfully accessed to IzmjeniAutor method.";
+                        string createText = $"User {principal.Identity.Name} can not access to IzmjeniAutor method. No modify permission.";
+                        FileHelper.WriteInXML(createText);
+                    }
+                    catch (ArgumentException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+
+                } else {
+
+
+                    try
+                    {
+                        string createText = $"User {principal.Identity.Name} can not access to IzmjeniAutor method. No modify permission.";
                         FileHelper.WriteInTxt(createText);
                     }
                     catch (ArgumentException e)
@@ -487,20 +946,6 @@ namespace Server
                         Console.WriteLine(e.Message);
                     }
                 }
-
-            }
-            else
-            {
-                try
-                {
-                    string createText = $"User {principal.Identity.Name} can not access to IzmjeniAutor method. No modify permission.";
-                    FileHelper.WriteInTxt(createText);
-                }
-                catch (ArgumentException e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-
                 string userName = Formater.ParseName(Thread.CurrentPrincipal.Identity.Name);
                 throw new FaultException("User " + userName +
                     " try to call IzmjeniAutor method. IzmjeniAutor method need  Modify permission.");
@@ -519,24 +964,80 @@ namespace Server
                     DataBase.knjige[id].Naziv = naziv;
                     DataBase.knjige[id].Zanr = zanr;
                     Console.WriteLine("Knjiga uspesno izmjenjena.");
+                    if (principal.Identity is GenericIdentity) {
 
-                    try
-                    {
-                        string createText = $"User {principal.Identity.Name} successfully accessed to IzmjeniKnjiga method.";
-                        FileHelper.WriteInTxt(createText);
-                    }
-                    catch(ArgumentException e)
-                    {
-                        Console.WriteLine(e.Message);
+                        try
+                        {
+                            string createText = $"User {principal.Identity.Name} successfully accessed to IzmjeniKnjiga method.";
+                            FileHelper.WriteInXML(createText);
+                        }
+                        catch (ArgumentException e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
+
+                    } else {
+                        try
+                        {
+                            string createText = $"User {principal.Identity.Name} successfully accessed to IzmjeniKnjiga method.";
+                            FileHelper.WriteInTxt(createText);
+                        }
+                        catch (ArgumentException e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
                     }
                 }
                 else
                 {
                     //zamjeniti sa custom exceptions mozda
                     Console.WriteLine("Knjiga sa ovim ID-em ne postoji");
+
+                    if (principal.Identity is GenericIdentity) {
+                        try
+                        {
+                            string createText = $"User {principal.Identity.Name} successfully accessed to IzmjeniKnjiga method.";
+                            FileHelper.WriteInXML(createText);
+                        }
+                        catch (ArgumentException e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
+
+                    }
+                    else {
+                        try
+                        {
+                            string createText = $"User {principal.Identity.Name} successfully accessed to IzmjeniKnjiga method.";
+                            FileHelper.WriteInTxt(createText);
+                        }
+                        catch (ArgumentException e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
+                    }
+                }
+            }
+            else
+            {
+
+                if (principal.Identity is GenericIdentity) {
+
                     try
                     {
-                        string createText = $"User {principal.Identity.Name} successfully accessed to IzmjeniKnjiga method.";
+                        string createText = $"User {principal.Identity.Name} can not access to IzmjeniKnjiga method. No modify permission.";
+                        FileHelper.WriteInXML(createText);
+                    }
+                    catch (ArgumentException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+
+
+                } else {
+                    try
+                    {
+                        string createText = $"User {principal.Identity.Name} can not access to IzmjeniKnjiga method. No modify permission.";
                         FileHelper.WriteInTxt(createText);
                     }
                     catch (ArgumentException e)
@@ -544,19 +1045,6 @@ namespace Server
                         Console.WriteLine(e.Message);
                     }
                 }
-            }
-            else
-            {
-                try
-                {
-                    string createText = $"User {principal.Identity.Name} can not access to IzmjeniKnjiga method. No modify permission.";
-                    FileHelper.WriteInTxt(createText);
-                }
-                catch (ArgumentException e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-
                 string userName = Formater.ParseName(Thread.CurrentPrincipal.Identity.Name);
                 throw new FaultException("User " + userName +
                     " try to call IzmjeniKnjiga method. IzmjeniKnjiga method need  Modify permission.");
@@ -575,23 +1063,83 @@ namespace Server
                     DataBase.users[username].Prezime = prezime;
                     DataBase.users[username].Aktivan = active;
                     Console.WriteLine("Korisnik uspesno izmjenjen.");
-                    try
-                    {
-                        string createText = $"User {principal.Identity.Name} successfully accessed to IzmjeniUser method.";
-                        FileHelper.WriteInTxt(createText);
+
+
+                    if (principal.Identity is GenericIdentity) {
+                        try
+                        {
+                            string createText = $"User {principal.Identity.Name} successfully accessed to IzmjeniUser method.";
+                            FileHelper.WriteInXML(createText);
+                        }
+                        catch (ArgumentException e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
+
                     }
-                    catch(ArgumentException e)
-                    {
-                        Console.WriteLine(e.Message);
+                    else {
+
+
+
+                        try
+                        {
+                            string createText = $"User {principal.Identity.Name} successfully accessed to IzmjeniUser method.";
+                            FileHelper.WriteInTxt(createText);
+                        }
+                        catch (ArgumentException e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
                     }
                 }
                 else
                 {
                     //zamjeniti sa custom exceptions mozda
                     Console.WriteLine("Korisnik sa ovim ID-em ne postoji");
+                    if (principal.Identity is GenericIdentity) {
+                        try
+                        {
+                            string createText = $"User {principal.Identity.Name} successfully accessed to IzmjeniUser method.";
+                            FileHelper.WriteInXML(createText);
+                        }
+                        catch (ArgumentException e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
+
+
+                    } else {
+                        try
+                        {
+                            string createText = $"User {principal.Identity.Name} successfully accessed to IzmjeniUser method.";
+                            FileHelper.WriteInTxt(createText);
+                        }
+                        catch (ArgumentException e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
+                    }
+                }
+            }
+            else
+            {
+
+                if (principal.Identity is GenericIdentity) {
+
                     try
                     {
-                        string createText = $"User {principal.Identity.Name} successfully accessed to IzmjeniUser method.";
+                        string createText = $"User {principal.Identity.Name} can not access to IzmjeniUser method. No modify permission.";
+                        FileHelper.WriteInXML(createText);
+                    }
+                    catch (ArgumentException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+
+                } else {
+                    try
+                    {
+                        string createText = $"User {principal.Identity.Name} can not access to IzmjeniUser method. No modify permission.";
                         FileHelper.WriteInTxt(createText);
                     }
                     catch (ArgumentException e)
@@ -599,19 +1147,6 @@ namespace Server
                         Console.WriteLine(e.Message);
                     }
                 }
-            }
-            else
-            {
-                try
-                {
-                    string createText = $"User {principal.Identity.Name} can not access to IzmjeniUser method. No modify permission.";
-                    FileHelper.WriteInTxt(createText);
-                }
-                catch (ArgumentException e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-
                 string userName = Formater.ParseName(Thread.CurrentPrincipal.Identity.Name);
                 throw new FaultException("User " + userName +
                     " try to call IzmjeniUser method. IzmjeniUser method need  Modify permission.");
